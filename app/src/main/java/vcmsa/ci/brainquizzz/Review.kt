@@ -1,5 +1,6 @@
 package vcmsa.ci.brainquizzz
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -31,6 +32,19 @@ class Review : AppCompatActivity() {
         for (i in questions.indices) {
             displayText.append("Q${i + 1}: ${questions[i]}\n")
             displayText.append("Answer: ${answers[i]}\n\n")
+        }
+        // Set text to Answers TextView
+        ReviewText.text = displayText.toString()
+
+
+        //setonClickListener
+        btnExit.setOnClickListener {
+            finish()
+        }
+
+        btnReset.setOnClickListener {
+            var intent = Intent (this, MainActivity::class.java)
+            startActivity( intent)
         }
 
 
