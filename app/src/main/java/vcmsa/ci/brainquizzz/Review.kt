@@ -17,6 +17,10 @@ class Review : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_review)
+        //initialize
+        ReviewText = findViewById<TextView>(R.id.ReviewText)
+        btnReset = findViewById<Button>(R.id.btnReset)
+        btnExit = findViewById<Button>(R.id.btnExit)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
