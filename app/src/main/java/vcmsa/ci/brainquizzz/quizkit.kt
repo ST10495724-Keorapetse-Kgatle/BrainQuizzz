@@ -1,5 +1,6 @@
 package vcmsa.ci.brainquizzz
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -54,12 +55,50 @@ class quizkit : AppCompatActivity() {
         var scoreCounter = 0
 
         ///set on  click listeners for my buttons
+        btnTrue.setOnClickListener {
+            checkAnswer(true)
+        }
 
+        btnFalse.setOnClickListener {
+            checkAnswer(false)
+        }
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        btnNext.setOnClickListener {
+            if (currentIndex < vcmsa.ci.brainquizzz.quizkit.Companion.questions.size - 1) {
+                currentIndex++
+                question.text = vcmsa.ci.brainquizzz.quizkit.Companion.questions[currentIndex]
+                feedBack.text = ""
+            } else {
+                feedBack.text = "End of Quiz! Click 'Results' to see your score."
+                btnNext.isEnabled = false // Disable Next button after last question
+                btnTrue.isEnabled = false
+                btnFalse.isEnabled = false
+            }
+        }
+
+        btnResult.setOnClickListener {
+            val intent = Intent(this, Score::class.java)
+            // it will send score to Result activity
+            intent.putExtra("score", score)
+            startActivity(intent)
+        }
+    }
+
+    private fun checkAnswer(userAnswer: Boolean) {
+        if (userAnswer == vcmsa.ci.brainquizzz.quizkit.Companion.feedbackArray[currentIndex]) {
+            //when the answer is correct it will display
+            feedBack.text = "Correct"
+        // Increase score on correct answer
+            score++
+        } else {
+            //when the answer is wrong it will display
+            feedBack.text = "Incorrect"
+
+            ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+                val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+                insets
+            }
         }
     }
 }
