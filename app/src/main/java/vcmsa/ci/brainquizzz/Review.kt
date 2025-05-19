@@ -21,6 +21,20 @@ class Review : AppCompatActivity() {
         ReviewText = findViewById<TextView>(R.id.ReviewText)
         btnReset = findViewById<Button>(R.id.btnReset)
         btnExit = findViewById<Button>(R.id.btnExit)
+
+        // Retrieve data passed from Quizkit
+        val questions = intent.getStringArrayListExtra("quiz_questions") ?: arrayListOf()
+        val answers = intent.getStringArrayListExtra("quiz_answers") ?: arrayListOf()
+
+        // Display the Questions & Answers
+        val displayText = StringBuilder()
+        for (i in questions.indices) {
+            displayText.append("Q${i + 1}: ${questions[i]}\n")
+            displayText.append("Answer: ${answers[i]}\n\n")
+        }
+
+
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
