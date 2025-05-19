@@ -48,6 +48,13 @@ class quizkit : AppCompatActivity() {
             btnFalse = findViewById<Button>(R.id.btnFalse)
             btnNext = findViewById<Button>(R.id.btnNext)
             btnResult = findViewById<Button>(R.id.btnResult)
+
+
+            question.text = vcmsa.ci.quizapp.quizkit.Companion.questions[currentIndex]
+            var  scoreCounter = 0
+            // Button click listeners
+            btnTrue.setOnClickListener {
+                checkAnswer(true)
         }
 
     }
