@@ -1,12 +1,19 @@
 package vcmsa.ci.brainquizzz
 
 import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class Score : AppCompatActivity() {
+    //declare
+    private lateinit var score: TextView
+    private lateinit var btnReview: Button
+    private lateinit var btnExit: Button
+    private lateinit var feedBackReview: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
