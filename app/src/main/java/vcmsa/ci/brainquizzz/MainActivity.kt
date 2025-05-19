@@ -1,5 +1,6 @@
 package vcmsa.ci.brainquizzz
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
@@ -18,6 +19,12 @@ class MainActivity : AppCompatActivity() {
         //initialize the buttons
         btnStart = findViewById<Button>(R.id.btnStart)
         btnExit = findViewById<Button>(R.id.btnExit)
+
+        //start the activity
+        btnStart.setOnClickListener {
+            var intent = Intent (this,quizkit::class.java)
+            startActivity( intent)
+        }
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
