@@ -28,6 +28,9 @@ class quizkit : AppCompatActivity() {
         )
         val feedbackArray = booleanArrayOf(true, false, true, true, false, false, true)
     }
+    private var currentIndex = 0
+    private var score = 0 // Track correct answers
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +40,15 @@ class quizkit : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+
+            //initialize
+            question = findViewById<TextView>(R.id.question)
+            feedBack = findViewById<TextView>(R.id.feedBack)
+            btnTrue = findViewById<Button>(R.id.btnTrue)
+            btnFalse = findViewById<Button>(R.id.btnFalse)
+            btnNext = findViewById<Button>(R.id.btnNext)
+            btnResult = findViewById<Button>(R.id.btnResult)
         }
+
     }
 }
