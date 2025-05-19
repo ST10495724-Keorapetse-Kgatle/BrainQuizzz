@@ -10,12 +10,14 @@ import androidx.core.view.WindowInsetsCompat
 
 class quizkit : AppCompatActivity() {
     //Declare
-    private lateinit  var question: TextView
+    private lateinit var question: TextView
     private lateinit var feedBack: TextView
     private lateinit var btnTrue: Button
     private lateinit var btnFalse: Button
     private lateinit var btnNext: Button
     private lateinit var btnResult: Button
+    private lateinit var btnExit: Button
+
     companion object {
         val questions = arrayOf(
             "Bananas are berries, but strawberries are not berries", // True
@@ -28,6 +30,7 @@ class quizkit : AppCompatActivity() {
         )
         val feedbackArray = booleanArrayOf(true, false, true, true, false, false, true)
     }
+
     private var currentIndex = 0
     private var score = 0 // Track correct answers
 
@@ -36,26 +39,27 @@ class quizkit : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_quizkit)
+
+
+        //initialize
+        question = findViewById<TextView>(R.id.question)
+        feedBack = findViewById<TextView>(R.id.feedBack)
+        btnTrue = findViewById<Button>(R.id.btnTrue)
+        btnFalse = findViewById<Button>(R.id.btnFalse)
+        btnNext = findViewById<Button>(R.id.btnNext)
+        btnResult = findViewById<Button>(R.id.btnResult)
+        btnExit = findViewById<Button>(R.id.btnExit)
+
+        question.text = questions[currentIndex]
+        var scoreCounter = 0
+
+        ///set on  click listeners for my buttons
+
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
-
-            //initialize
-            question = findViewById<TextView>(R.id.question)
-            feedBack = findViewById<TextView>(R.id.feedBack)
-            btnTrue = findViewById<Button>(R.id.btnTrue)
-            btnFalse = findViewById<Button>(R.id.btnFalse)
-            btnNext = findViewById<Button>(R.id.btnNext)
-            btnResult = findViewById<Button>(R.id.btnResult)
-
-
-            question.text = vcmsa.ci.quizapp.quizkit.Companion.questions[currentIndex]
-            var  scoreCounter = 0
-            // Button click listeners
-            btnTrue.setOnClickListener {
-                checkAnswer(true)
         }
-
     }
 }
