@@ -28,6 +28,13 @@ class Score : AppCompatActivity() {
         val receivedScore = intent.getIntExtra("score", 0)
         score.text = "Your score: $receivedScore/5"
 
+
+        //Assign feedback text
+        feedBackReview.text = if (receivedScore >= 3) {
+            "Great job!"
+        } else {
+            "Keep practicing!"
+        }
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
